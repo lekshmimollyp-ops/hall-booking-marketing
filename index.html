@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Manager Pro - Streamline Your Venue Management</title>
+    content="Professional hall management system for venues, auditoriums, and event spaces. Reduce admin time by 90%
+    with smart tracking, expense management, and custom mobile apps.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #5568d3;
+            --secondary: #764ba2;
+            --text-dark: #1a202c;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --success: #48bb78;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: var(--bg-light);
+        }
+
+        .benefits-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .benefit-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: white;
+        }
+
+        .case-study-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .case-study-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .result-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .result-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Lead Form Section */
+        .lead-form-section {
+            background: var(--bg-light);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #c3e6cb;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🏛️ Hall Manager Pro</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#case-study">Case Study</a></li>
+                <li><a href="#contact">Get Started</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Request Demo</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Streamline Your Hall Bookings in Minutes, Not Hours</h1>
+            <p>Professional booking management system for halls, auditoriums, and event spaces. Reduce admin time by 90%
+                with automated scheduling, expense tracking, and custom mobile apps.</p>
+            <a href="#contact" class="cta-button" style="display: inline-block; margin-top: 1rem;">Get Your Custom
+                System →</a>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">90%</span>
+                    <span class="stat-label">Time Saved</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Booking Accuracy</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Client Access</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <h2 class="section-title">Everything You Need to Manage Your Venue</h2>
+        <p class="section-subtitle">A complete solution designed specifically for halls, community centers, and event
+            spaces</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Smart Booking Management</h3>
+                <p>Visual calendar interface for tracking all your bookings in one place. Manage events, view schedules,
+                    and prevent double-bookings with conflict detection.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Expense Tracking</h3>
+                <p>Track utilities, maintenance, catering, and all venue-related expenses. Generate financial reports
+                    instantly with categorized spending insights.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Custom Mobile App</h3>
+                <p>Your own branded Android app for on-the-go management. Check bookings, approve requests, and manage
+                    your venue from anywhere.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>User Management</h3>
+                <p>Manage your team with role-based access. Track who made which bookings, assign responsibilities, and
+                    maintain complete records of all activities.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Custom Branding</h3>
+                <p>Your logo, your colors, your identity. Each deployment is fully customized to match your
+                    organization's brand and style.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Reports & Analytics</h3>
+                <p>Booking trends, revenue reports, utilization rates, and expense summaries. Make data-driven decisions
+                    about your venue.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section benefits">
+        <h2 class="section-title">Why Choose Our System?</h2>
+        <p class="section-subtitle">Built by developers who understand venue management challenges</p>
+
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="icon">⚡</div>
+                <h4>Quick Setup</h4>
+                <p>Live in 2-3 days, not months</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="icon">💵</div>
+                <h4>Affordable</h4>
+                <p>Starting at ₹15,000/month</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="icon">🛠️</div>
+                <h4>Full Support</h4>
+                <p>Direct access to developers</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="icon">🔒</div>
+                <h4>Secure & Reliable</h4>
+                <p>AWS-hosted with daily backups</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section id="case-study" class="section case-study">
+        <h2 class="section-title">Success Story: MT Hall Pazhakutty</h2>
+        <p class="section-subtitle">See how we transformed their booking process</p>
+
+        <div class="case-study-content">
+            <div class="case-study-header">
+                <h3>From Chaos to Clarity</h3>
+                <p>MT Hall was spending 5+ hours per week managing bookings with Excel spreadsheets, dealing with
+                    frequent double-bookings and lost expense records.</p>
+            </div>
+
+            <div class="case-study-results">
+                <div class="result-item">
+                    <span class="result-number">5hrs → 30min</span>
+                    <span>Weekly Admin Time</span>
+                </div>
+
+                <div class="result-item">
+                    <span class="result-number">0</span>
+                    <span>Double Bookings</span>
+                </div>
+
+                <div class="result-item">
+                    <span class="result-number">100%</span>
+                    <span>Expense Visibility</span>
+                </div>
+
+                <div class="result-item">
+                    <span class="result-number">24/7</span>
+                    <span>Client Self-Service</span>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; text-align: center; font-style: italic; opacity: 0.95;">
+                "This system has completely transformed how we manage our halls. What used to take hours now takes
+                minutes. We love the professional experience!"
+            </p>
+            <p style="text-align: center; margin-top: 0.5rem; font-weight: 600;">
+                — Admin, MT Hall Pazhakutty
+            </p>
+        </div>
+    </section>
+
+    <!-- Lead Form Section -->
+    <section id="contact" class="section lead-form-section">
+        <h2 class="section-title">Get Your Custom Hall Manager Pro System</h2>
+        <p class="section-subtitle">Tell us about your venue and we'll create a tailored solution for you</p>
+
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                ✅ Thank you! We've received your information and will contact you within 24 hours.
+            </div>
+
+            <form action="https://formsubmit.co/lekshmimollyp@gmail.com" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="🏛️ New Hall Manager Pro Lead!">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+
+                <!-- Contact Information -->
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required placeholder="Contact Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+                </div>
+
+                <!-- Venue Information -->
+                <div class="form-group">
+                    <label for="venueName">Venue/Organization Name <span class="required">*</span></label>
+                    <input type="text" id="venueName" name="venueName" required placeholder="Hall Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="venueType">Venue Type <span class="required">*</span></label>
+                    <select id="venueType" name="venueType" required>
+                        <option value="">-- Select Type --</option>
+                        <option value="religious">Religious Center (Church/Temple/Mosque)</option>
+                        <option value="community">Community Center</option>
+                        <option value="educational">Educational Institution</option>
+                        <option value="corporate">Corporate Event Space</option>
+                        <option value="banquet">Banquet Hall</option>
+                        <option value="hotel">Hotel/Resort</option>
+                        <option value="government">Government/Municipal</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location (City/State) <span class="required">*</span></label>
+                    <input type="text" id="location" name="location" required placeholder="Trivandrum, Kerala">
+                </div>
+
+                <div class="form-group">
+                    <label for="hallCount">Number of Halls/Rooms <span class="required">*</span></label>
+                    <input type="number" id="hallCount" name="hallCount" required min="1" placeholder="2">
+                </div>
+
+                <div class="form-group">
+                    <label for="bookingsPerMonth">Approximate Bookings per Month <span class="required">*</span></label>
+                    <select id="bookingsPerMonth" name="bookingsPerMonth" required>
+                        <option value="">-- Select Range --</option>
+                        <option value="1-5">1-5 bookings</option>
+                        <option value="6-10">6-10 bookings</option>
+                        <option value="11-20">11-20 bookings</option>
+                        <option value="21-50">21-50 bookings</option>
+                        <option value="50+">50+ bookings</option>
+                    </select>
+                </div>
+
+                <!-- Current System -->
+                <div class="form-group">
+                    <label for="currentSystem">How do you currently manage bookings? <span
+                            class="required">*</span></label>
+                    <select id="currentSystem" name="currentSystem" required>
+                        <option value="">-- Select Method --</option>
+                        <option value="manual">Manual (Paper/Notebook)</option>
+                        <option value="excel">Excel/Google Sheets</option>
+                        <option value="calendar">Google Calendar</option>
+                        <option value="software">Existing Software</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Features Needed -->
+                <div class="form-group">
+                    <label>Features You're Most Interested In:</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature1" name="features" value="booking-management">
+                            <label for="feature1">Booking Management</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature2" name="features" value="expense-tracking">
+                            <label for="feature2">Expense Tracking</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature3" name="features" value="mobile-app">
+                            <label for="feature3">Mobile App</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature4" name="features" value="custom-branding">
+                            <label for="feature4">Custom Branding</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="feature5" name="features" value="reports">
+                            <label for="feature5">Reports & Analytics</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Budget -->
+                <div class="form-group">
+                    <label for="budget">Budget Range (Monthly)</label>
+                    <select id="budget" name="budget">
+                        <option value="">-- Select Budget --</option>
+                        <option value="under-8k">Under ₹8,000</option>
+                        <option value="8k-20k">₹8,000 - ₹20,000</option>
+                        <option value="20k-40k">₹20,000 - ₹40,000</option>
+                        <option value="40k+">₹40,000+</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+
+                <!-- Timeline -->
+                <div class="form-group">
+                    <label for="timeline">When would you like to start? <span class="required">*</span></label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">-- Select Timeline --</option>
+                        <option value="immediately">Immediately</option>
+                        <option value="1-month">Within 1 month</option>
+                        <option value="2-3-months">2-3 months</option>
+                        <option value="just-exploring">Just exploring options</option>
+                    </select>
+                </div>
+
+                <!-- Additional Notes -->
+                <div class="form-group">
+                    <label for="notes">Additional Notes or Questions</label>
+                    <textarea id="notes" name="notes" placeholder="Tell us more about your needs..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Get Your Custom Quote →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#features">Features</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#case-study">Case Study</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p style="opacity: 0.7; margin-top: 1rem;">© 2026 Hall Manager Pro. All rights reserved.</p>
+            <p style="opacity: 0.6; margin-top: 0.5rem; font-size: 0.9rem;">Professional Hall Management
+                Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
